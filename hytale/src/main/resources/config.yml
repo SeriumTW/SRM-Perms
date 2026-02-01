@@ -73,7 +73,9 @@ use-server-uuid-cache: false
 chat-formatter:
 
   # If SRM-Perms should handle chat formatting.
-  enabled: true
+  # NOTE: If using SRM-Essentials, set this to false and let Essentials handle chat.
+  # SRM-Essentials will automatically read prefix/suffix from SRM-Perms.
+  enabled: false
 
   # The format to use.
   message-format: "<prefix><username><suffix>: <message>"
