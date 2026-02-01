@@ -1,0 +1,56 @@
+plugins {
+    alias(libs.plugins.licenser) apply false
+}
+
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+defaultTasks 'licenseFormat', 'build'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    apply plugin: 'org.cadixdev.licenser'
+
+    group = 'io.github.seriumtw.perms'
+    version = '1.0.0-SNAPSHOT'
+
+    sourceCompatibility = 21
+    targetCompatibility = 21
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+
+    tasks.withType(Test).configureEach {
+        testLogging {
+            events = [TestLogEvent.PASSED, TestLogEvent.FAILED, TestLogEvent.SKIPPED]
+            exceptionFormat = TestExceptionFormat.FULL
+            showExceptions = true
+            showCauses = true
+            showStackTraces = true
+        }
+    }
+
+    jar {
+        from '../LICENSE.txt'
+    }
+
+    project.ext.majorVersion = '1'
+    project.ext.minorVersion = '0'
+    project.ext.patchVersion = '0'
+    project.ext.apiVersion = project.ext.majorVersion + '.' + project.ext.minorVersion
+    project.ext.fullVersion = project.ext.apiVersion + '.' + project.ext.patchVersion
+
+    license {
+        header = rootProject.file('HEADER.txt')
+        include '**/*.java'
+        newLine = true
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.lucko.me/' }
+        maven { url 'https://maven.hytale.com/release/' }
+    }
+}

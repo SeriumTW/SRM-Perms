@@ -1,0 +1,14 @@
+{
+  "Group": "SRM-Perms",
+  "Name": "SRM-Perms",
+  "Version": "${pluginVersion}",
+  "Description": "Permissions system for Hytale servers",
+  "Authors": [{"Name": "SeriumTW"}, {"Name": "Luck (Original LuckPerms)"}],
+  "Website": "https://github.com/SeriumTW/SRM-Perms",
+  "ServerVersion": "*",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "DisabledByDefault": false,
+  "Main": "io.github.seriumtw.perms.hytale.loader.HytaleLoaderPlugin",
+  "IncludesAssetPack": false
+}

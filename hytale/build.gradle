@@ -1,0 +1,54 @@
+plugins {
+    alias(libs.plugins.shadow)
+}
+
+sourceCompatibility = 21
+targetCompatibility = 21
+
+dependencies {
+    implementation project(':common')
+    compileOnly project(':common:loader-utils')
+
+    implementation 'com.google.guava:guava:19.0'
+    implementation 'com.google.code.gson:gson:2.7'
+
+    compileOnly 'com.hypixel.hytale:Server:2026.01.24-6e2d4fc36'
+}
+
+repositories {
+    maven { url 'https://maven.hytale.com/release/' }
+}
+
+shadowJar {
+    archiveFileName = 'srm-perms-hytale.jarinjar'
+
+    dependencies {
+        include(dependency('io.github.seriumtw.perms:.*'))
+        include(dependency('com.google.guava:guava:.*'))
+        include(dependency('com.google.code.gson:gson:.*'))
+    }
+
+    relocate 'net.kyori.adventure', 'io.github.seriumtw.perms.lib.adventure'
+    relocate 'net.kyori.event', 'io.github.seriumtw.perms.lib.eventbus'
+    relocate 'com.github.benmanes.caffeine', 'io.github.seriumtw.perms.lib.caffeine'
+    relocate 'okio', 'io.github.seriumtw.perms.lib.okio'
+    relocate 'okhttp3', 'io.github.seriumtw.perms.lib.okhttp3'
+    relocate 'net.bytebuddy', 'io.github.seriumtw.perms.lib.bytebuddy'
+    relocate 'me.lucko.commodore', 'io.github.seriumtw.perms.lib.commodore'
+    relocate 'org.mariadb.jdbc', 'io.github.seriumtw.perms.lib.mariadb'
+    relocate 'com.mysql', 'io.github.seriumtw.perms.lib.mysql'
+    relocate 'org.postgresql', 'io.github.seriumtw.perms.lib.postgresql'
+    relocate 'com.zaxxer.hikari', 'io.github.seriumtw.perms.lib.hikari'
+    relocate 'com.mongodb', 'io.github.seriumtw.perms.lib.mongodb'
+    relocate 'org.bson', 'io.github.seriumtw.perms.lib.bson'
+    relocate 'redis.clients.jedis', 'io.github.seriumtw.perms.lib.jedis'
+    relocate 'io.nats.client', 'io.github.seriumtw.perms.lib.nats'
+    relocate 'com.rabbitmq', 'io.github.seriumtw.perms.lib.rabbitmq'
+    relocate 'org.apache.commons.pool2', 'io.github.seriumtw.perms.lib.commonspool2'
+    relocate 'ninja.leaping.configurate', 'io.github.seriumtw.perms.lib.configurate'
+    relocate 'org.yaml.snakeyaml', 'io.github.seriumtw.perms.lib.yaml'
+}
+
+artifacts {
+    archives shadowJar
+}
