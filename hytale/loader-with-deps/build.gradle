@@ -2,9 +2,9 @@ plugins {
     alias(libs.plugins.shadow)
 }
 
-tasks.configureEach {
-    enabled = false
-}
+// tasks.configureEach {
+//     enabled = false
+// }
 
 dependencies {
     implementation project(':api')

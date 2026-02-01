@@ -20,7 +20,7 @@ repositories {
 }
 
 shadowJar {
-    archiveFileName = 'srm-perms-hytale.jarinjar'
+    archiveFileName = 'srmperms-hytale.jarinjar'
 
     dependencies {
         include(dependency('io.github.seriumtw.perms:.*'))
